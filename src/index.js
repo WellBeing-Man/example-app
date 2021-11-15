@@ -22,6 +22,11 @@ function Square(props) {
 
 
     handleClick = (i) => {
+
+      if(this.state.squares[i]){
+        return;
+      }
+
       // 불변성의 중요성
       const squares = this.state.squares.slice();
       squares[i] =  this.state.isXNext ? "X" : "O";
