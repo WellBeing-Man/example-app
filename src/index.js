@@ -15,7 +15,8 @@ function Square(props) {
     constructor(props){
       super(props);
       this.state = {
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
+        isXNext : true,
       }
     }
 
@@ -23,8 +24,11 @@ function Square(props) {
     handleClick = (i) => {
       // 불변성의 중요성
       const squares = this.state.squares.slice();
-      squares[i] = "X";
-      this.setState({squares:squares})
+      squares[i] =  this.state.isXNext ? "X" : "O";
+      this.setState({
+        squares:squares,
+        isXNext : !this.state.isXNext,
+      })
     }
 
     renderSquare(i) {
@@ -32,7 +36,7 @@ function Square(props) {
     }
   
     render() {
-      const status = 'Next player: X';
+      const status = `Next player: ${this.state.isXNext ? "X" : "O"}`;
   
       return (
         <div>
