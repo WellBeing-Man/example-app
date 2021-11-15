@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function Square(props) {
-      return (
-        <button className="square" onClick = {props.onClick }>
-          {props.value}
-        </button>
-      );
-  }
+  return (
+    <button className="square" onClick = {props.onClick }>
+      {props.value}
+    </button>
+  );
+}
   
   class Board extends React.Component {
-
     constructor(props){
       super(props);
       this.state = {
@@ -22,13 +21,13 @@ function Square(props) {
 
 
     handleClick = (i) => {
+         // 불변성의 중요성
+      const squares = this.state.squares.slice();
 
-      if(this.state.squares[i]){
+      if(squares[i]){
         return;
       }
-
-      // 불변성의 중요성
-      const squares = this.state.squares.slice();
+   
       squares[i] =  this.state.isXNext ? "X" : "O";
       this.setState({
         squares:squares,
@@ -81,8 +80,6 @@ function Square(props) {
       );
     }
   }
-
-
   
   ReactDOM.render(
     <Game />,
